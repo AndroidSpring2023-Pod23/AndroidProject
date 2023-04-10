@@ -1,6 +1,6 @@
 # AndroidProject
 
-# Milestone 1 - APP_NAME_HERE
+# Milestone 1 - QUIZ GAME APP
 
 ## Table of Contents
 
@@ -12,17 +12,18 @@
 
 ### Description
 
-[Description of your app]
+This app works by fetching questions from the API based on the selected topic.
+With a specific topic picked, you can answer various questions and then display high scores on a separate page.
 
 ### App Evaluation
 
 [Evaluation of your app across the following attributes]
-- **Category:**
-- **Mobile:**
+- **Category:** Education/ Entertainment
+- **Mobile:** Very mobile.
 - **Story:**
-- **Market:**
-- **Habit:**
-- **Scope:**
+- **Market:** Any one who likes quiz island.
+- **Habit:** Highly addictive especially if played against competitive family members.
+- **Scope:** App isn’t too broad or specific. Strip down app is a quiz app without profile and leaderboard
 
 ## Product Spec
 
