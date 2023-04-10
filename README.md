@@ -31,12 +31,15 @@ With a specific topic picked, you can answer various questions and then display 
 
 **Required Features**
 
-* [fill in your required user features here]
+* User can answer trivia questions based on a preselected theme
+* User can see their results from previous attempts
+* User can answer questions under a specified time
 * ...
 
 **Stretch Features**
 
-* [fill in your optional user features here]
+* User can see how their scores compare to a list hosted on a website or the github page
+* User can answer questions on any number of different topics/themes
 * ...
 
 ### 2. Screen Archetypes
