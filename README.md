@@ -71,8 +71,21 @@ With a specific topic picked, you can answer various questions and then display 
 ## Wireframes
 
 [Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="url" width=600>
 
 ### [BONUS] Digital Wireframes & Mockups
+<table>
+  <tr>
+    <td><img src="wireframe/login wireframe.png" width=450></td>
+    <td><img src="wireframe/homepage wireframe.png" width=450></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td><img src="wireframe/question wireframe.png" width=450></td>
+    <td><img src="wireframe/results wireframe.png" width=450></td>
+  </tr>
+</table>
 
 ### [BONUS] Interactive Prototype
