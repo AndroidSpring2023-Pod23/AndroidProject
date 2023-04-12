@@ -31,10 +31,12 @@ With a specific topic picked, you can answer various questions and then display 
 
 **Required Features**
 
-* User can answer trivia questions based on a preselected theme
+* Create Dashboard UI
+* User can answer trivia questions
+* Pull questions from aforementioned API
 * User can see their results from previous attempts
 * User can answer questions under a specified time
-* ...
+* 
 
 **Stretch Features**
 
