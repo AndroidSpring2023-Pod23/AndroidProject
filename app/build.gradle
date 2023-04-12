@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace 'com.example.quizzle'
+    namespace 'com.example.quizapp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.quizzle"
-        minSdk 23
+        applicationId "com.example.quizapp"
+        minSdk 28
         targetSdk 33
         versionCode 1
         versionName "1.0"
