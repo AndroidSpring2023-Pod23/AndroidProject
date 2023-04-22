@@ -1,5 +1,6 @@
 package com.example.quizzle
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -9,6 +10,7 @@ import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import okhttp3.Headers
+import org.json.JSONArray
 
 private const val TAG = "Main Activity"
 private const val SEARCH_URL = "https://the-trivia-api.com/api/questions?limit=20"
@@ -45,12 +47,12 @@ class MainActivity : AppCompatActivity() {
     // on-click action for a category
     // TO-DO: launch the quiz activity
     private fun onCategoryClicked(category: String) {
-        Toast.makeText(this, "You clicked on $category", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "You clicked on $category", Toast.LENGTH_SHORT).show()
 
         val client = AsyncHttpClient()
         val params = RequestParams()
         params["Content-Type"] = "application/json"
-        params["categories"] = "$category"
+        params["categories"] = category
         client.get(SEARCH_URL, params, object: JsonHttpResponseHandler() {
             override fun onFailure(
                 statusCode: Int,
@@ -63,6 +65,13 @@ class MainActivity : AppCompatActivity() {
 
             override fun onSuccess(statusCode: Int, headers: Headers?, json: JsonHttpResponseHandler.JSON) {
                 Log.i(TAG, "Successful ${json.jsonArray}")
+
+                val questionJSONArray: JSONArray? = json.jsonArray
+
+                questionJSONArray?.let{Question().fromJson(it)}?.let {questions.addAll(it)}
+
+                val intent = Intent(this@MainActivity, QuizActivity(questions)::class.java)
+                startActivity(intent)
             }
         })
     }
