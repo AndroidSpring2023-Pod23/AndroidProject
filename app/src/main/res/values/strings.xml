@@ -2,4 +2,8 @@
     <string name="app_name">Quizzle</string>
     <string name="question">Question:</string>
     <string name="confirm">Confirm</string>
+    <string name="a">a)</string>
+    <string name="b">b)</string>
+    <string name="c">c)</string>
+    <string name="d">d)</string>
 </resources>
