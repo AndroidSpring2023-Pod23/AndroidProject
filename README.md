@@ -93,4 +93,4 @@ With a specific topic picked, you can answer various questions and then display 
 ### [BONUS] Interactive Prototype
 
 ## Walkthrough
-<p align="center"><img src='walkthrough.gif' title='Video Walkthrough' width='450' alt='Video Walkthrough'/></p>
+<p align="center"><img src='http://g.recordit.co/UWeo2OpnUK.gif' title='Video Walkthrough' width='450' alt='Video Walkthrough'/></p>
