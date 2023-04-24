@@ -1,5 +1,6 @@
 package com.example.quizzle
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +10,6 @@ import androidx.cardview.widget.CardView
 class MainActivity : AppCompatActivity() {
 
     // quiz categories
-    private val categories = arrayOf("General", "Music", "Science", "Film", "Sport", "Geography")
     private lateinit var categoryCardViews: List<CardView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +36,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     // on-click action for a category
-    // TO-DO: launch the quiz activity
+    // launch the quiz activity
     private fun onCategoryClicked(category: String) {
-        Toast.makeText(this, "You clicked on $category", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, QuizActivity::class.java)
+        intent.putExtra("category", category)
+        startActivity(intent)
     }
 }
