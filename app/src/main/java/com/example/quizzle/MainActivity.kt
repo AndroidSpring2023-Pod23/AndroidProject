@@ -2,11 +2,19 @@ package com.example.quizzle
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.codepath.asynchttpclient.AsyncHttpClient
+import com.codepath.asynchttpclient.RequestParams
+import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import okhttp3.Headers
+import org.json.JSONArray
 
-
+private const val TAG = "Main Activity"
+private const val SEARCH_URL = "https://the-trivia-api.com/api/questions?limit=20"
+private val questions = mutableListOf<Question>()
 class MainActivity : AppCompatActivity() {
 
     // quiz categories
@@ -26,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.geo_card_view)
         )
         setCategoryListeners() // set the category card view listeners
+
     }
 
     // add on-click listener to each category
@@ -34,7 +43,6 @@ class MainActivity : AppCompatActivity() {
             cardView.setOnClickListener { onCategoryClicked(cardView.tag as String) }
         }
     }
-
     // on-click action for a category
     // launch the quiz activity
     private fun onCategoryClicked(category: String) {
