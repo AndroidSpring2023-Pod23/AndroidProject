@@ -2,12 +2,11 @@ package com.example.quizzle
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     // quiz categories
     private lateinit var categoryCardViews: List<CardView>
