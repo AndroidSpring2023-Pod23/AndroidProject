@@ -9,7 +9,7 @@ class FirebaseUtil {
         private const val TAG = "FirebaseUtil/"
         private val db = FirebaseFirestore.getInstance()
 
-        fun addUser(username: String, quizzesTaken: Int, avgScore: Double) {
+        fun addUser(username: String, quizzesTaken: Int, avgScore: Double, onSuccess: ((Triple<String, Int, Double>) -> Unit)? = null, onFailure: ((Exception) -> Unit)? = null) {
             val user = hashMapOf(
                 "username" to username,
                 "quizzesTaken" to quizzesTaken,
@@ -17,13 +17,25 @@ class FirebaseUtil {
             )
 
             db.collection("users")
-                .document(username) // Use the username as the document ID
-                .set(user) // Use set() instead of add() to update the existing document with the given ID
-                .addOnSuccessListener {
-                    Log.d(TAG, "User added with ID: $username")
+                .document(username)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        onFailure?.invoke(Exception("User already exists"))
+                    } else {
+                        db.collection("users")
+                            .document(username)
+                            .set(user)
+                            .addOnSuccessListener {
+                                onSuccess?.invoke(Triple(username, quizzesTaken, avgScore))
+                            }
+                            .addOnFailureListener { e ->
+                                onFailure?.invoke(e)
+                            }
+                    }
                 }
-                .addOnFailureListener {
-                    Log.w(TAG, "Error adding user", it)
+                .addOnFailureListener { e ->
+                    onFailure?.invoke(e)
                 }
         }
 

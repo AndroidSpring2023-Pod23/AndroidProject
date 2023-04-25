@@ -12,6 +12,7 @@ import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
 import okhttp3.Headers
 import org.json.JSONArray
+import kotlin.properties.Delegates
 
 class QuizActivity : AppCompatActivity() {
 
@@ -26,12 +27,27 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var optionD: TextView
     private lateinit var nextButton: Button
     private lateinit var questionNumberText: TextView
+    private lateinit var scoreTextView: TextView
+    private lateinit var levelTextView: TextView
     private var currentIndex = 0
     private var score = 0
+
+    private lateinit var username: String
+    private var quizzesTaken by Delegates.notNull<Int>()
+    private var avgScore by Delegates.notNull<Double>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quiz)
+
+        username = intent.getStringExtra("username").toString()
+        quizzesTaken = intent.getIntExtra("quizzesTaken",0)
+        avgScore = intent.getDoubleExtra("avgScore", 0.0)
+        scoreTextView = findViewById(R.id.scoreTextView)
+        levelTextView = findViewById(R.id.levelTextView)
+        scoreTextView.text = String.format("%.1f", avgScore)
+        levelTextView.text = "$quizzesTaken"
+
         val category = intent.getStringExtra("category")?.lowercase() ?: "general"
         fetchQuiz(category)
         questionText = findViewById(R.id.questionTV)
@@ -82,10 +98,10 @@ class QuizActivity : AppCompatActivity() {
                     if (quizEnded) {
                         nextButton.setOnClickListener {
                             val intent = Intent(this@QuizActivity, ResultsActivity::class.java)
-                            intent.putExtra(
-                                "score",
-                                score
-                            ) // Pass the score to the results activity
+                            intent.putExtra("score", score) // Pass the score to the results activity
+                            intent.putExtra("username", username)
+                            intent.putExtra("quizzesTaken", quizzesTaken)
+                            intent.putExtra("avgScore", avgScore)
                             startActivity(intent)
                             finishActivity(0)
                         }

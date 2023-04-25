@@ -40,12 +40,15 @@ tools:context=".HomeActivity">
 
             <TextView
                 android:id="@+id/scoreTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:text="0"
+                android:background="@drawable/bg_rectangle_top"
                 android:textColor="#ECE8E8"
                 android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center_horizontal"
+                android:text="0"
                 app:layout_constraintStart_toEndOf="@id/scoreImageView"
                 app:layout_constraintTop_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -58,22 +61,25 @@ tools:context=".HomeActivity">
                 android:scaleType="fitCenter"
                 android:src="@drawable/logo"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.015"
-                app:layout_constraintStart_toStartOf="@id/scoreTextView"
+                app:layout_constraintHorizontal_bias="0.335"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="#FAFAFA" />
 
             <TextView
                 android:id="@+id/levelTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="64dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rectangle_top"
+                android:gravity="center_horizontal"
                 android:text="0"
                 android:textColor="#ECE8E8"
                 android:textSize="24sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/logoImageView"
                 app:layout_constraintTop_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

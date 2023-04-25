@@ -10,6 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.properties.Delegates
 
 class ResultsActivity : AppCompatActivity() {
 
@@ -17,11 +18,21 @@ class ResultsActivity : AppCompatActivity() {
     private lateinit var scoreTV: TextView
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var ratingBar: RatingBar
+    private lateinit var scoreTextView: TextView
+    private lateinit var levelTextView: TextView
     private var score: Int = 0
+
+    private lateinit var username: String
+    private var quizzesTaken by Delegates.notNull<Int>()
+    private var avgScore by Delegates.notNull<Double>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_results)
+
+        username = intent.getStringExtra("username").toString()
+        quizzesTaken = intent.getIntExtra("quizzesTaken",0)
+        avgScore = intent.getDoubleExtra("avgScore", 0.0)
 
         // get score
         score = intent.getIntExtra("score", 0)
@@ -31,22 +42,21 @@ class ResultsActivity : AppCompatActivity() {
         scoreTV = findViewById(R.id.scoreTV)
         bottomNav = findViewById(R.id.bottomNav)
         ratingBar = findViewById(R.id.ratingBar)
+        scoreTextView = findViewById(R.id.scoreTextView)
+        levelTextView = findViewById(R.id.levelTextView)
 
         setMessage()
         setScore()
 
+        // update average score and quizzes
+        val quizzesTakenNew = quizzesTaken + 1
+        val avgScoreNew = (avgScore * quizzesTaken + score) / quizzesTakenNew
+        scoreTextView.text = String.format("%.1f", avgScoreNew)
+        levelTextView.text = "$quizzesTakenNew"
 
-        // this is a test
         lifecycleScope.launch {
             withContext(Dispatchers.IO) {
-                //FirebaseUtil.addUser("Test0",2,5.5)
-                /*FirebaseUtil.getUserByUsername("Test0", onSuccess = { user ->
-                    val username = user.first
-                    val quizzesTaken = user.second
-                    val avgScore = user.third
-                    // Do something with the user data
-                    Log.d("Results/", " user $username $quizzesTaken $avgScore")
-                })*/
+                updateData(username,quizzesTakenNew,avgScoreNew)
             }
         }
 
@@ -56,6 +66,9 @@ class ResultsActivity : AppCompatActivity() {
                 R.id.navigation_home -> {
                     // Handle click on Home button
                     val intent = Intent(this, HomeActivity::class.java)
+                    intent.putExtra("username", username)
+                    intent.putExtra("quizzesTaken", quizzesTakenNew)
+                    intent.putExtra("avgScore", avgScoreNew)
                     startActivity(intent)
                     true
                 }
@@ -86,5 +99,10 @@ class ResultsActivity : AppCompatActivity() {
         val maxScore = 10
         val maxRating = 3
         ratingBar.rating = ((score.toFloat() / maxScore.toFloat()) * maxRating.toFloat())
+    }
+
+    private fun updateData(userId:String, quizzesTaken: Int, avgScore: Double){
+        FirebaseUtil.updateUser(userId, "quizzesTaken", quizzesTaken)
+        FirebaseUtil.updateUser(userId, "avgScore", avgScore)
     }
 }
