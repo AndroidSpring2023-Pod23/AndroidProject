@@ -75,7 +75,7 @@ With a specific topic picked, you can answer various questions and then display 
 [Add picture of your hand sketched wireframes in this section]
 <img src="url" width=600>
 
-### [BONUS] Digital Wireframes & Mockups
+### Digital Wireframes & Mockups
 <table>
   <tr>
     <td><img src="wireframe/login wireframe.png" width=450></td>
@@ -90,4 +90,10 @@ With a specific topic picked, you can answer various questions and then display 
   </tr>
 </table>
 
-### [BONUS] Interactive Prototype
+### Walkthrough
+<table>
+  <tr>
+    <td><img src="walkthrough1.png" width=450></td>
+    <td><img src="walkthrough2.png" width=450></td>
+  </tr>
+</table>
