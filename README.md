@@ -93,7 +93,7 @@ With a specific topic picked, you can answer various questions and then display 
 ### Walkthrough
 <table>
   <tr>
-    <td><img src="walkthrough1.png" width=450></td>
-    <td><img src="walkthrough2.png" width=450></td>
+    <td><img src="walkthrough1.gif" width=450></td>
+    <td><img src="walkthrough2.gif" width=450></td>
   </tr>
 </table>
